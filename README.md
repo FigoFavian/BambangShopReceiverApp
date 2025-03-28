@@ -66,8 +66,8 @@ You can install Postman via this website: https://www.postman.com/downloads/
     -   [✓] Commit: `Create Notification database and Notification repository struct skeleton.`
     -   [✓] Commit: `Implement add function in Notification repository.`
     -   [✓] Commit: `Implement list_all_as_string function in Notification repository.`
-    -   [ ] Write answers of your learning module's "Reflection Subscriber-1" questions in this README.
--   **STAGE 3: Implement services and controllers**
+    -   [✓] Write answers of your learning module's "Reflection Subscriber-1" questions in this README.
+-   **STAGE 2: Implement services and controllers**
     -   [ ] Commit: `Create Notification service struct skeleton.`
     -   [ ] Commit: `Implement subscribe function in Notification service.`
     -   [ ] Commit: `Implement subscribe function in Notification controller.`
@@ -85,5 +85,11 @@ This is the place for you to write reflections:
 ### Mandatory (Subscriber) Reflections
 
 #### Reflection Subscriber-1
+
+Answer:
+
+1. We use RwLock<> to synchronize access to the Vec of Notifications to ensure concurrency while maintaining safety. This allows multiple threads to read the notifications simultaneously when calling list_all_as_string, while only one thread can gain exclusive access to modify the list using add. This brief blocking ensures safe modification without affecting concurrent reads. On the other hand, using Mutex<> would be inefficient because it locks the entire structure for both reading and writing, meaning even a single read operation would block all other threads, leading to unnecessary delays.
+
+2. Unlike Java, where static variables can be mutated using static functions without restriction, Rust does not allow direct mutation of static variables due to its strict thread safety enforcement. Rust prevents data races and undefined behavior by limiting mutability in static variables. To work around this, we use the lazy_static external library, which allows static variables to be initialized at runtime and then used safely as mutable data while maintaining Rust's safety guarantees.
 
 #### Reflection Subscriber-2
