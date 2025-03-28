@@ -77,7 +77,7 @@ You can install Postman via this website: https://www.postman.com/downloads/
     -   [✓] Commit: `Implement receive function in Notification controller.`
     -   [✓] Commit: `Implement list_messages function in Notification service.`
     -   [✓] Commit: `Implement list function in Notification controller.`
-    -   [ ] Write answers of your learning module's "Reflection Subscriber-2" questions in this README.
+    -   [✓] Write answers of your learning module's "Reflection Subscriber-2" questions in this README.
 
 ## Your Reflections
 This is the place for you to write reflections:
@@ -93,3 +93,11 @@ Answer:
 2. Unlike Java, where static variables can be mutated using static functions without restriction, Rust does not allow direct mutation of static variables due to its strict thread safety enforcement. Rust prevents data races and undefined behavior by limiting mutability in static variables. To work around this, we use the lazy_static external library, which allows static variables to be initialized at runtime and then used safely as mutable data while maintaining Rust's safety guarantees.
 
 #### Reflection Subscriber-2
+
+Answers:
+
+1. The lib.rs file encapsulates shared components, configuration, and error handling, setting the stage for the application’s overall structure. It defines the compose_error_response function to standardize error handling, and it establishes a global HTTP client via REQWEST_CLIENT to promote efficiency by avoiding repetitive reinitializations. Moreover, the file uses APP_CONFIG—which is initialized from environment variables using dotenvy and Figment—to set up application settings, while the AppConfig structure stores values like instance_root_url, publisher_root_url, and instance_name with auto-generated getter methods from getset. Ultimately, I did explore beyond the tutorial steps, delving into the lib.rs file to gain insights into these shared functionalities.
+
+2. Each instance of the Main app, when spawned, independently handles its own set of notifications, ensuring that registered subscribers receive notifications according to their subscribed product types. This is made possible by the Observer pattern, which leverages Rust traits to support diverse subscriber behaviors and adheres to the Open-Closed Principle for better maintainability and flexibility. In essence, the Observer pattern streamlines the integration of more subscribers, regardless of whether it's a single or multiple instances of the Main app.
+
+3. The testing process becomes more efficient because of Postman. Which it simplifies sending and viewing HTTP requests for various endpoints. In addition to the convenience offered by Postman, implementing unit tests for every component has allowed me to ensure that each part of the system behaves as expected. This dual approach not only minimizes repetitive manual testing but also enhances overall testing efficiency for both my tutorial work and group projects.
